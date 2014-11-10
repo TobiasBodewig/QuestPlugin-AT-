@@ -15,6 +15,6 @@ public class PlayerListener implements Listener {
 
 	@EventHandler
 	public void onNPCRightClick(NPCRightClickEvent event) {
-
+		event.getClicker().sendMessage("NPCRightClickEvent");
 	}
 }
