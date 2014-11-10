@@ -19,19 +19,18 @@ public enum Settings {
 
 	TEST("de.test");
 
+	public static final String customConfigName = "config.yml";
 	public static FileConfiguration customConfig = null;
 	public static File customConfigFile = null;
 
 	public static void reloadCustomConfig(QuestPlugin plugin) {
 		if (customConfigFile == null) {
-			customConfigFile = new File(plugin.getDataFolder(), "customConfig.yml");
+			customConfigFile = new File(plugin.getDataFolder(), customConfigName);
 		}
 		customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
-
-		// Schaut nach den Standardwerten in der jar
 		Reader defConfigStream = null;
 		try {
-			defConfigStream = new InputStreamReader(plugin.getResource("customConfig.yml"), "UTF8");
+			defConfigStream = new InputStreamReader(plugin.getResource(customConfigName), "UTF8");
 		} catch (UnsupportedEncodingException e) {}
 		if (defConfigStream != null) {
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
